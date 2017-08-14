@@ -35,7 +35,7 @@
 $ mkdir -p /path/to
 $ cd /path/to
 $ ssh-add ~/.ssh/id_rsa
-$ git clone git@github.com:mediba-system/mediba-kpi.git
+$ git clone git@github.com:lochuynh-mediba/dmp-system.git
 $ git checkout master
 ```
 
@@ -53,7 +53,7 @@ node2.vm.synced_folder ".", "/vagrant", :owner=>"vagrant", :group=>"vagrant", :m
     * バッチサーバ設定
 ```
 #node2.vm.synced_folder ".", "/vagrant", :owner=>"vagrant", :group=>"vagrant", :mount_options => ["dmode=777", "fmode=775"]
-node2.vm.synced_folder ".", "/vagrant", :owner=>"batch-mediba-kpi", :group=>"batch-mediba-kpi", :mount_options => ["dmode=777", "fmode=775"]
+node2.vm.synced_folder ".", "/vagrant", :owner=>"batch-medibakpi", :group=>"batch-medibakpi", :mount_options => ["dmode=777", "fmode=775"]
 ```
 
 * ```$ vagrant reload``` を実行
@@ -63,11 +63,11 @@ node2.vm.synced_folder ".", "/vagrant", :owner=>"batch-mediba-kpi", :group=>"bat
   * ```$ vagrant ssh mediba_kpi_local_batch01``` で仮想バッチサーバにログイン
   * バッチユーザ（batch-mediba-kpi）にスイッチし、pythonバージョン確認とmysqlにログインできるかを確認
 ```
-[vagrant@local-mediba-kpi-batch01 ~]$ sudo su - batch-mediba-kpi
+[vagrant@local-mediba-kpi-batch01 ~]$ sudo su - batch-medibakpi
 [batch-mediba-kpi@local-mediba-kpi-batch01 ~]$ python -V
 Python 3.6.0
-[batch-mediba-kpi@local-mediba-kpi-batch01 ~]$ mysql -umediba_kpi -p -h localhost mediba_kpi
-Enter password: mediba
+[batch-mediba-kpi@local-mediba-kpi-batch01 ~]$ mysql -umedibakpi -p -h localhost medibakpi
+Enter password: medibakpi
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 4
 Server version: 5.7.17 MySQL Community Server (GPL)
