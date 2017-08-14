@@ -1,0 +1,22 @@
+- include: mediba_kpi_batch.yml
+
+# ローカル環境にのみ適用するもの
+- name: provision local batch only
+  hosts: mediba_kpi_batch
+  sudo: yes
+  vars_files:
+    - ../hosts/{{ stage }}/group_vars/mediba_kpi_batch.yml
+  roles:
+    # awscliのインストール
+    - role: aws
+    # timezone設定
+    - role: timezone
+    # ローカルにmysqlを立てる
+    - role: mysql-server
+  tasks:
+    # ntpdサービスを起動して自動起動をONにする
+    - name: enabled ntpd
+      service: name=ntpd state=restarted enabled=yes
+    # /vagrant/mediba-kpi.mediba.jpへのシンボリックリンク
+    - name: local project symbolic link
+      file: src=/vagrant/{{ application_name }} dest={{ document_root }} state=link

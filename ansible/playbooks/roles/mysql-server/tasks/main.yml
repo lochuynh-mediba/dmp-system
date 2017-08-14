@@ -1,0 +1,25 @@
+---
+# MySQLServerのインストール（ローカルのみ）
+- name: install mysql5.6 Server
+  yum: name=mysql-community-server state=present enablerepo=mysql56-community*
+  when: stage == 'local'
+
+# MySQLServerの起動（ローカルのみ）
+- name: start mysql server
+  service: name=mysqld state=started enabled=yes
+  when: stage == 'local'
+
+# ansibleのmysql_dbとmysql_userを使うために必要（AmazonLinuxでは多分動かない）
+- name: install mysql python module
+  yum: name=MySQL-python state=present
+  when: stage == 'local'
+
+# ローカル用のDB作成（とりあえず失敗しても通過するようにする）
+- name: create local database
+  mysql_db: name=medibakpi state=present
+  when: stage == 'local'
+
+# ローカル用のDBユーザー作成（とりあえず失敗しても通過するようにする）
+- name: create local database user
+  mysql_user: name=medibakpi password=medibakpi priv=*.*:ALL,GRANT state=present
+  when: stage == 'local'

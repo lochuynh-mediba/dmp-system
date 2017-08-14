@@ -1,0 +1,102 @@
+---
+# pyenvのインストールに必要なパッケージを先に用意する
+- name: yum install development package
+  yum: name={{ item }} state=installed
+  with_items:
+      - gcc
+      - gcc-c++
+      - patch
+      - zlib-devel
+      - bzip2-devel
+      - openssl-devel
+      - curl-devel
+      - gettext-devel
+      - readline-devel
+      - ncurses-devel
+      - sqlite
+      - sqlite-devel
+      - gdbm-devel
+      - db4-devel
+      - expat-devel
+      - libpcap-devel
+      - xz-devel
+      - pcre-devel
+      - libxml2-devel
+      - libxslt-devel
+      - libselinux-python
+
+# pyenvのインストール
+# 「args」を使って.pyenvがない場合にのみ実行する用に設定
+- name: install pyenv
+  args:
+    creates: /usr/local/pyenv
+  shell: |
+    git clone https://github.com/yyuu/pyenv.git /usr/local/pyenv
+    # set pyenv path
+    (
+        echo 'export PYENV_ROOT=/usr/local/pyenv'
+        echo 'export PATH=$PYENV_ROOT/bin:$PATH'
+        echo 'eval "$(pyenv init -)"'
+    ) >> ~/.bashrc
+
+- name: set pyenv path batch-medibakpi user
+  become: yes
+  become_user: batch-medibakpi
+  shell: |
+    # set pyenv path
+    (
+        echo 'export PYENV_ROOT=/usr/local/pyenv'
+        echo 'export PATH=$PYENV_ROOT/bin:$PATH'
+        echo 'eval "$(pyenv init -)"'
+    ) >> ~/.bashrc
+
+# pyenv経由でpython3.6を入れる（バージョンは設定ファイルで指定）
+- name: install python
+  shell: |
+    source ~/.bashrc
+    pyenv install {{python_version}}
+    pyenv rehash
+    pyenv global {{python_version}}
+    pip3 install --upgrade pip
+
+# https://docs.ybi.idcfcloud.net/articles/rest-api-python-client
+- name: install td-client
+  shell: |
+    source ~/.bashrc
+    pip install td-client
+
+# http://pandas.pydata.org/pandas-docs/stable/install.html#installing-from-pypi
+- name: install pandas
+  shell: |
+    source ~/.bashrc
+    pip install pandas
+
+
+# http://docs.sqlalchemy.org/en/latest/intro.html#install-via-pip
+- name: install SQLAlchemy
+  shell: |
+    source ~/.bashrc
+    pip install SQLAlchemy
+
+# https://github.com/boto/boto3#quick-start
+- name: install boto3
+  shell: |
+    source ~/.bashrc
+    pip install boto3
+
+# http://dev.mysql.com/downloads/connector/python/
+- name: install MySQl Driver
+  shell: |
+    source ~/.bashrc
+    pip install mysql-connector==2.1.4
+
+# https://github.com/treasure-data/pandas-td
+- name: install pandas-td
+  shell: |
+    source ~/.bashrc
+    pip install pandas-td
+
+- name: install Google API python client
+  shell: |
+    source ~/.bashrc
+    pip install google-api-python-client==1.6.2

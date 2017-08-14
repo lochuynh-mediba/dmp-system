@@ -1,0 +1,16 @@
+release_path: "/var/releases"
+application_name: "batch"
+document_root: "/var/batch"
+
+deploy_user: "vagrant"
+deploy_group: "vagrant"
+
+# バッチ専用の設定
+batch_user: "batch-medibakpi"
+batch_group: "batch-medibakpi"
+batch_user_home: "/home/batch-medibakpi"
+
+python_version: "3.6.0"
+
+# CloudWatchLog用（ローカルでは未使用だが変数だけ用意）
+stream_name_prefix: ""

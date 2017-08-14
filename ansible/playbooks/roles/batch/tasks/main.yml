@@ -1,0 +1,26 @@
+---
+- name: Create batch user group
+  group: name={{ batch_user }}
+
+- name: Create batch user
+  user: name={{ batch_user }} group={{ batch_group }} home={{ batch_user_home }}
+
+# aws config
+- name: Create aws config directory
+  file: path={{ batch_user_home }}/.aws state=directory owner={{ batch_user }} group={{ batch_group }} mode=0755
+
+- name: Create aws config
+  template: src=roles/batch/templates/aws_config.j2 dest={{ batch_user_home }}/.aws/config owner={{ batch_user }} group={{ batch_group }} mode=0644
+
+# log setup
+- name: Create log directory
+  file: path=/var/log/ap state=directory owner={{ batch_user }} group={{ batch_group }} mode=0777 recurse=yes
+
+- name: set batch log
+  template: src=roles/batch/templates/backend_aplog.conf.j2 dest=/etc/rsyslog.d/backend_aplog.conf owner=root group=root mode=0644
+
+- name: setup log rotation
+  template: src=roles/batch/templates/syslog.j2 dest=/etc/logrotate.d/syslog owner=root group=root mode=0644
+
+- name: restart rsyslog
+  command: service rsyslog restart

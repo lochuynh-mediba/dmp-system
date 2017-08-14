@@ -1,0 +1,16 @@
+release_path: "/var/releases"
+application_name: "batch"
+document_root: "/var/batch"
+
+deploy_user: "mediba-deploy"
+deploy_group: "mediba-deploy"
+
+# バッチ専用の設定
+batch_user: "batch-medibakpi"
+batch_group: "batch-medibakpi"
+batch_user_home: "/home/batch-medibakpi"
+
+python_version: "3.6.0"
+
+# CloudWatchLog用
+stream_name_prefix: "sally-prd-KPIToolBatch-"

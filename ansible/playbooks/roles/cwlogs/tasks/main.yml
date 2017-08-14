@@ -1,0 +1,19 @@
+- name: upgrade all packages
+  yum: name='*' state=latest
+  when: stage != 'local'
+
+- name: install awslogs
+  yum: name=awslogs state=present
+  when: stage != 'local'
+
+- name: setup awscli.conf
+  template: src=roles/cwlogs/templates/awscli.conf.j2 dest=/etc/awslogs/awscli.conf owner=root group=root mode=0600
+  when: stage != 'local'
+
+- name: setup awslogs.conf
+  template: src=roles/cwlogs/templates/awslogs.conf.j2 dest=/etc/awslogs/awslogs.conf owner=root group=root mode=0644
+  when: stage != 'local'
+
+- name: start awslogs
+  service: name=awslogs state=started enabled=yes
+  when: stage != 'local'

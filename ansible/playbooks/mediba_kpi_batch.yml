@@ -1,0 +1,11 @@
+- name: provision to batch
+  hosts: mediba_kpi_batch
+  sudo: yes
+  vars_files:
+    - ../hosts/{{ stage }}/group_vars/mediba_kpi_batch.yml
+  roles:
+    - role: base
+    - role: batch
+    - role: mysql
+    - role: python3
+    - role: cwlogs

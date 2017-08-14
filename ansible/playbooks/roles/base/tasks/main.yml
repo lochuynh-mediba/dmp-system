@@ -1,0 +1,30 @@
+---
+- name: check epel repository
+  command: ls -l /etc/yum.repos.d/epel.repo
+  ignore_errors: true
+  register: chkEpelRepo
+  tags:
+    - base
+
+- name: Install epel repository
+  command: rpm -ivh https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm creates=/etc/yum.repos.d/epel.repo
+  when: chkEpelRepo|failed
+  tags:
+    - base
+
+- name: yum cache clear
+  shell: yum clean all
+
+- name: Setup Base Modules
+  yum: name={{ item }} enablerepo=epel state=installed
+  with_items:
+      - git
+      - telnet
+      - wget
+      - zsh
+      - vim
+      - zip
+      - unzip
+      - crontabs
+      - ntp
+      - gcc

@@ -1,0 +1,10 @@
+- name: check exist awscli
+  command: aws --version
+  ignore_errors: true
+  register: chkAwsCli
+
+- name: Install awscli
+  shell: |
+    source ~/.bashrc
+    pip install awscli
+  when: chkAwsCli|failed

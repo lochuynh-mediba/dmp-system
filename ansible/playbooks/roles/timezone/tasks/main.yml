@@ -1,0 +1,17 @@
+- name: check localtime file
+  command: find /etc/localtime
+  ignore_errors: true
+  register: chkLocaltime
+
+- name: Setup localtime Asia/Tokyo
+  file: src=/usr/share/zoneinfo/Asia/Tokyo dest=/etc/localtime state=link force=yes
+  when: chkLocaltime|success
+
+- name: check timezone file
+  command: find /usr/share/zoneinfo/Asia/Tokyo
+  ignore_errors: true
+  register: chkTimezone
+
+- name: Setup timezone Tokyo
+  replace: dest=/etc/sysconfig/clock regexp='^ZONE="UTC"$' replace='ZONE="Asia/Tokyo"'
+  when: chkTimezone|success
