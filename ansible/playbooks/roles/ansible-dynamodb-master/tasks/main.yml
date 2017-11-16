@@ -1,0 +1,58 @@
+# This allows us to override some settings based on the distro/os
+- name: "Load distribution variables"
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+    - "default.yml"
+  tags:
+    - dynamodb
+    - pkgs
+
+# Only install Java if we know the package and the user wants us to
+- name: "Install headless JRE"
+  package: name={{ dynamodb_java_package }} state=present
+  when: dynamodb_install_java|bool == True and dynamodb_java_package != ""
+  tags:
+    - dynamodb
+    - pkgs
+
+# Setup directories/users
+- include: setup.yml
+  tags:
+    - dynamodb
+
+# Install dynamodb
+- name: "Check currently installed version"
+  shell: cat {{ dynamodb_install_dir }}/sha256sum
+  ignore_errors: True
+  changed_when: current_sha.stdout != dynamodb_sha
+  register: current_sha
+  tags:
+    - dynamodb
+
+# We store the currently installed version in a sha256sum file at the base of the install dir, allows us
+# to skip installing if we already have the requested version
+- include: install.yml
+  notify:
+    - Restart DynamoDB
+  when: current_sha.stdout != dynamodb_sha
+  tags:
+    - dynamodb
+
+# Setup system files (init/logrotate/etc...)
+- include: system.yml
+  tags:
+    - dynamodb
+
+# Finally start the service
+- name: "Make sure DynamoDB local development is running"
+  service:
+    name: dynamodb
+    state: running
+    enabled: yes
+    runlevel: 5
+    pattern: "DynamoDBLocal.jar"
+  tags:
+    - dynamodb
+    - services

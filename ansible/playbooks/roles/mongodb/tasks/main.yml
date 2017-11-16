@@ -1,0 +1,19 @@
+---
+- name: check mongo repository
+  command: ls -l /etc/yum.repos.d/mongodb-org.repo
+  ignore_errors: true
+  register: checkMongoRepo
+  tags:
+    - mongodb
+
+- name: Config mongo repository
+  template: src=mongorepo.j2 dest=/etc/yum.repos.d/mongodb-org.repo
+  when: checkMongoRepo|failed
+  tags:
+    - mongodb
+
+- name: install mongodb client
+  yum: name=mongodb-org state=present
+  when: checkMongoRepo|failed
+  tags:
+    - mongodb

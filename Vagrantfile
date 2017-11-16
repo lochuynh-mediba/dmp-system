@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
   # ローカルバッチサーバー
   config.vm.define "mediba_kpi_local_batch01" do |node2|
 
-    node2.vm.box = "box-cutter/centos67"
+    node2.vm.box = "box-cutter/centos73"
     node2.vm.hostname = "local-mediba-kpi-batch01"
     node2.vm.network :private_network, ip: "192.168.33.94"
 

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "mediba-kpi",
+  "private_key_id": "67dc56794644d765dea7da47ecd9d192b4427f01",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDM6YXdFC/Kdsjr\nGhVId1mTQTzx4UQlwxhHVDGdlYQkEfTLHJxD2u9dl4XctO7i8zg/9JVMkgHoLQp1\n044Un6xkv6Ngdf7sPoOJUSwS+SlB4/uVPfGcFxu28iRUxgtF58D2nCi+ZmZbcnhq\nJcmbUuOx/SBDvyp9KvYAVhIzP/F/ftdL1Zh7sB5oGDUsubgHflObbCgeJxgqR5Fm\nutWl6JetKODASRT8FWuh5EbX1BLsAsY2OntsDkC9xe3aP+AXnKi6BhAFYTJtLB2O\naLruVLPKw94z5yoIzo8ygP/6WPMN/RbGTJ8IFeAjCKjxeeyUB/IAO3lursZWSPlC\nshoZkUCTAgMBAAECggEAE6OcCKzQdHCptV1fcH2+hY5T8itwwHJwMhc/1sZyOZIe\nVUCC5OlSVgou3RDa8RXLgdcGCiaCQpzdKvQhjW4iSS5UJmtuCSQSr5yqgzpYecVe\neEF4FcmMhp5dh2HLHyI6THMktTQ+Qix4nap30J2t+gH0ei8TukGy/c7srqHFxRNt\nvuxMUPVQe/uaNXtrn6hM0dVNW2luC80y+uKwCip7h4btny6oZaBK2nbNqk2VhQCi\nOzR4yL3+GcT7+3AdFf9eL86PH2KowpFK5TP3LAPBLRbU5JSzDIRFrjAkaeSMd0bx\n8idwQnF8LFofudnU76XAo+VhNa8DrI7Q6mI1L3wkAQKBgQD/Fl09gRyW1jMWj+El\n9qfijmPM7GIu5VloYNvlfpcC3auh96q0rrVObxs6jWyM8OR+pAzhuLxF7XFuqcMB\nW0tn72IFfDRGGnjkPHhELbwLbQJFwg1LKE5QqH4iA1Y3SG8wOFNm6cR6ju6NccXz\nSwoObwiZQ4cPRRqeHsGUN0JUAQKBgQDNpTP4KQ+TOlGbM+DjLqCOKM2sHXJxDfd0\ndBV5Q+pZnGVEdTuGM4VqA7D50tBbYveQkO793XVPBSkz8SeXpP4ptZYxitXEAx0T\n2CurDQSrPTmoqaZsapeXApOxKjyWL/6EGkNTR+S6TE936nMM1evCxbaHfiygE82y\nFjhJOSsEkwKBgDawsc709o80X4Gv2WLNTlNZmfYenDJXw+KIGb1Ldc8MfbbdJcFV\nT9QAKENWfPZ+005/l69xbxRDAzXpucB5tWIURdzNM1vwYwj0GgjsEUwV1A3mu/jo\nLFpItbpPItX5drVM7jy7U/++01CKGxm9deuATMSnYLaaZ0mNaI2Bh3wBAoGAAqUs\nXPXSQHeQkymArAtuf0WhF6StUyz10OapXAz2l75+QvorENfa0HlJrnz6tyI3wwFK\nQbO2jZSoagWhF79Eka7HRs3dYA8WMaonLaUWOUmpUzUTcfORDZ033yCG9PubD4Hy\n+cBD/e17XDSE1FZwGOpIJcgGtOxsSe0lPjPhDMcCgYEA+zxPNciVL0IZj777Li9r\nWzm10fbAiuJMyCj1r4dP+DoFWeYmADDNhxl5ZFliIRCYicDPmjYnTTINMRqurnDD\n04lrEmtX5TfBHHLtumcqM3YTpvlvaK221oDNtPxHpwLYgU0cYu7OmGSR6vA9WUfp\nBynVugL0kZfdAEdsZvZRZxQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "mediba-kpi@mediba-kpi.iam.gserviceaccount.com",
+  "client_id": "105833497982886797796",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mediba-kpi%40mediba-kpi.iam.gserviceaccount.com"
+}

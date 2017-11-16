@@ -16,7 +16,7 @@
       - sqlite
       - sqlite-devel
       - gdbm-devel
-      - db4-devel
+      # - db4-devel
       - expat-devel
       - libpcap-devel
       - xz-devel

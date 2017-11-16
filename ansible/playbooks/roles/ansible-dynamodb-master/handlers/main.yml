@@ -1,0 +1,11 @@
+- name: "Reload systemd"
+  shell: systemctl daemon-reload
+  tags:
+    - dynamodb
+
+- name: "Restart DynamoDB"
+  service:
+    name: dynamodb
+    state: restarted
+  tags:
+    - dynamodb

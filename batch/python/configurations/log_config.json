@@ -1,0 +1,63 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "simple_format": {
+                "class": "logging.Formatter",
+                "format": "%(asctime)s %(name)s %(levelname)s %(message)s"
+        },
+
+        "batch_log_simple_format": {
+                "class": "logging.Formatter",
+                "format": "%(asctime)s %(levelname)s %(message)s"
+        },
+
+
+        "system_log_format": {
+                "class": "logging.Formatter",
+                "format": "%(levelname)s %(name)s %(message)s"
+        }
+    },
+
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "simple_format",
+            "stream": "ext://sys.stdout"
+        },
+
+        "system_handler": {
+            "class": "logging.handlers.SysLogHandler",
+            "level": "DEBUG",
+            "formatter": "system_log_format",
+            "facility": "local2",
+            "address": "/dev/log"
+        },
+
+        "aggregate_trigger_handler": {
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "level": "DEBUG",
+            "formatter": "batch_log_simple_format",
+            "filename": "/var/log/ap/mediba_kpi_aggregate_trigger.log",
+            "backupCount": 1,
+            "encoding": "utf8",
+            "when": "midnight"
+        }
+
+    },
+
+    "loggers": {
+
+        "aggregate_trigger": {
+            "level": "DEBUG",
+            "handlers": ["aggregate_trigger_handler"],
+            "propagate": false
+        }
+    },
+
+    "root": {
+        "level": "DEBUG",
+        "handlers": ["console", "system_handler"]
+    }
+}

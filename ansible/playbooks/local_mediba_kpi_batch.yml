@@ -13,6 +13,9 @@
     - role: timezone
     # ローカルにmysqlを立てる
     - role: mysql-server
+    - role: mongodb
+    - role: ansible-role-nodejs-master
+    - role: ansible-dynamodb-master
   tasks:
     # ntpdサービスを起動して自動起動をONにする
     - name: enabled ntpd

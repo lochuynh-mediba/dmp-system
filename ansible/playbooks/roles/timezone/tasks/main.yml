@@ -13,5 +13,9 @@
   register: chkTimezone
 
 - name: Setup timezone Tokyo
-  replace: dest=/etc/sysconfig/clock regexp='^ZONE="UTC"$' replace='ZONE="Asia/Tokyo"'
+  # replace: dest=/etc/sysconfig/clock regexp='^ZONE="UTC"$' replace='ZONE="Asia/Tokyo"'
+  timezone:
+    name: Asia/Tokyo
+  become: yes
+  become_method: sudo
   when: chkTimezone|success
